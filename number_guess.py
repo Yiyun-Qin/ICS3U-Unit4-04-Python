@@ -12,21 +12,29 @@ def main():
     # The game compares the guessed number and the random answer
 
     # input
-    number_guess = input("Enter the number you guess between 0 - 9: ")
-
     # process & output
     answer_random = random.randint(0, 9)
-    print("")
-    try:
-        number_integer = int(number_guess)
-        if number_integer == answer_random:
-            print("Your guess is right!")
-        else:
-            print("Your guess is wrong! The answer is {0}.".format(answer_random))
-    except Exception:
-        print("{} is not an integer!".format(number_guess))
-    finally:
-        print("\nDone.")
+    while True:
+        guess_string = input("Enter the number you guess between 0 - 9: ")
+        print("")
+        try:
+            guess_integer = int(guess_string)
+            if guess_integer < 0 or guess_integer > 9:
+                print("Please put in a number between 0 and 9!")
+                print("Please try again.")
+            elif guess_integer < answer_random:
+                print("The answer is bigger than your number!")
+                print("Please try again.")
+            elif guess_integer > answer_random:
+                print("The answer is smaller than your number!")
+                print("Please try again.")
+            else:
+                print("Your guess is right! The answer is {}!".format(answer_random))
+                print("\nDone.")
+                break
+        except Exception:
+            print("Invalid number!")
+            print("Please try again.")
 
 
 if __name__ == "__main__":
