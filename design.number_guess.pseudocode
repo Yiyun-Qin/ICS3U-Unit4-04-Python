@@ -1,14 +1,22 @@
-GET number_guessed
-GET answer_random
-TRY
-    number_integer = int(number_guessed)
-    IF (number_integer = answer_random) THEN
-        SHOW "Your guess is right!"
-    ELSE
-        SHOW "Your answer is wrong! The correct answer is answer_random"
-    ENDIF
-EXCEPT Exception
-    SHOW "number_guessed is not an integer!"
-FINALLY
-    SHOW "Done."
-ENDTRY
+DO
+    GET guess_string
+    TRY
+        guess_integer = int(guess_string)
+        IF (guess_integer < 0 || guess_integer > 9) THEN
+            SHOW "Please put in a number between 0 and 9!"
+        ELSEIF (guess_integer < answer_random) THEN
+            SHOW "The answer is bigger than your number!"
+        ELSEIF (guess_integer > answer_random) THEN
+            SHOW "The answer is smaller than your number!"
+        ELSE
+            SHOW "Your guess is right! The answer is answer_random!"
+            SHOW "Done."
+            BREAK
+        ENDIF
+    EXCEPT Exception
+        SHOW "Invalid number!"
+    FINALLY
+        SHOW "Please try again."
+    ENDTRY
+WHILE True
+END
