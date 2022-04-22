@@ -15,6 +15,7 @@ def main():
     # process & output
     answer_random = random.randint(0, 9)
     while True:
+        print("")
         guess_string = input("Enter the number you guess between 0 - 9: ")
         print("")
         try:
